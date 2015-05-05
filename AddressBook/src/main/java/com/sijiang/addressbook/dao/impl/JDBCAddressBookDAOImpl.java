@@ -7,11 +7,12 @@ import com.sijiang.addressbook.model.AddressBook;
 
 @Component("com.sijiang.addressbook.dao.impl.JDBCAddressBookDAOImpl")
 public class JDBCAddressBookDAOImpl implements AddressBookDAO {
-
+	private static final String FIND_BY_ADDRESS_ID = "";
+	
+	
 	@Override
 	public AddressBook findByAddressBookId(int addressBookId) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

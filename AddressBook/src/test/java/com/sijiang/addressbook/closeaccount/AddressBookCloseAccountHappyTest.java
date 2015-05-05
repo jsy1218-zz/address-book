@@ -48,9 +48,8 @@ public class AddressBookCloseAccountHappyTest {
 					.findAccountByUsername(expectedAccount.getUserName());
 
 			Assert.assertEquals(expectedAccount, actualAccount);
-			LOGGER.info(actualAccount.toString()
-					+ " has been closed in Account table");
-
+			Assert.assertEquals(AccountStatus.CLOSED, actualAccount.getAccountStatus());
+			
 		} catch (DuplicateKeyException dupEx) {
 			LOGGER.error(dupEx.getMessage());
 			throw new DuplicateKeyException(dupEx.getMessage());
