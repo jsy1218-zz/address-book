@@ -14,6 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.sijiang.addressbook.model.Person;
 import com.sijiang.addressbook.service.AddressBookManager;
 import com.sijiang.addressbook.service.impl.AddressBookManagerImpl;
+import com.sijiang.addressbook.service_config.ServiceConfig;
 import com.sijiang.addressbook.util.DefaultAddressBookParams;
 
 public class AddressBookAddPersonServiceHappyTest {

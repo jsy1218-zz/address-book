@@ -48,7 +48,7 @@ public class AddressBookManagerImpl implements AddressBookManager {
 		Account closingAccount =  new Account.
 				AccountBuilder(targetAccount.getUserName(), targetAccount.getPassWord(),
 						AccountStatus.CLOSED).CreateDate(targetAccount.getCreateDate())
-						.LastLoginDate(targetAccount.getLastLoginDate()).AddressBooks(targetAccount.getAddressBooks())
+						.LastLoginDate(targetAccount.getLastLoginDate())
 						.buildAccount();
 		
 		addressBookRepo.closeAccount(closingAccount);
