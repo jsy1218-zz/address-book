@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsd:schema targetNamespace="http://addressbook.com/open_account" 
+		   xmlns:tns="http://www.addressbook.com/open_account" 
+		   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		   
+	  <xsd:element name="OpenAccountRequest">
+		    <xsd:complexType>
+			      <xsd:sequence>
+				        <xsd:element type="xsd:string" name="username"/>
+				        <xsd:element type="xsd:string" name="passord"/>
+			      </xsd:sequence>
+		    </xsd:complexType>
+	  </xsd:element>
+	  
+</xsd:schema>
