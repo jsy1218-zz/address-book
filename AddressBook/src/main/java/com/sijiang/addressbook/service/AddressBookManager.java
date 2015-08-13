@@ -16,13 +16,16 @@ public interface AddressBookManager {
 	List<Person> findPersonsByLastnameAndFirstname(String firstName,
 			String lastName);
 
-	void addEmailToPerson(int personId, String email);
+	void addEmailToPerson(String firstName,
+			String lastName, String email);
 
-	void addPhoneNumberToPerson(int personId, int areaCode, int prefix,
+	void addPhoneNumberToPerson(String firstName,
+			String lastName, int areaCode, int prefix,
 			int lineNumber, int... countryCode);
 
-	void addAddressToPerson(int personId, String streetName, String city,
-			String country, String postalCode, String addressType);
+	void addAddressToPerson(String firstName,
+			String lastName, String streetName, String city,
+			String country, int postalCode, String addressType);
 
 	Account findAccountByUsername(String username);
 

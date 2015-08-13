@@ -12,11 +12,11 @@ public interface PersonDAO {
 
 	void addPersonIntoExistingAccount(Person newPerson, String username);
 
-	void addEmailToPerson(Email defaultEmail, int personId);
+	void addEmailToPerson(Email defaultEmail, String firstName, String lastName);
 	
-	void addAddressToPerson(Address defaultAddress, int personId);
+	void addAddressToPerson(Address defaultAddress, String firstName, String lastName);
 
-	void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, int personId);
+	void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, String firstName, String lastName);
 
 	List<Person> findPersonsByLastnameAndFirstname(String firstName,
 			String lastName);

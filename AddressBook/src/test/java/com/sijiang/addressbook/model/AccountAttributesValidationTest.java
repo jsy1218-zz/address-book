@@ -24,7 +24,7 @@ public class AccountAttributesValidationTest {
 	private static final String VALID_CITY = "Seattle";
 	private static final String VALID_COUNTRY = "USA";
 	private static final String VALID_STREET_NAME = "10th St";
-	private static final String VALID_POSTAL_CODE = "123456";
+	private static final int VALID_POSTAL_CODE = 123456;
 	private static final String VALID_EMAIL = "123@gmail.com";
 	private static final int VALID_COUNTRY_CODE = 01;
 	private static final int VALID_AREA_CODE = 201;

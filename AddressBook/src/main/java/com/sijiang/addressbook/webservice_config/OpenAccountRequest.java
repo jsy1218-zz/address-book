@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="passord" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,15 +38,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "username",
-    "passord"
+    "password"
 })
-@XmlRootElement(name = "OpenAccountRequest")
+@XmlRootElement(name = "OpenAccountRequest", namespace="http://addressbook.com/open_account")
 public class OpenAccountRequest {
 
     @XmlElement(required = true)
     protected String username;
     @XmlElement(required = true)
-    protected String passord;
+    protected String password;
 
     /**
      * Gets the value of the username property.
@@ -80,20 +80,20 @@ public class OpenAccountRequest {
      *     {@link String }
      *     
      */
-    public String getPassord() {
-        return passord;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Sets the value of the passord property.
+     * Sets the value of the password property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPassord(String value) {
-        this.passord = value;
+    public void setPassword(String value) {
+        this.password = value;
     }
 
 }

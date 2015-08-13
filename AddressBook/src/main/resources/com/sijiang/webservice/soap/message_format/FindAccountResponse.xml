@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<ns:FindAccountResponse xmlns:ns="http://addressbook.com/find_account">
+			<username>jsy1218</username>
+			<createdate>2016/05/03</createdate>
+			<lastlogindate>2016/05/03</lastlogindate>
+			<accountstatus>CLOSED</accountstatus>>
+		</ns:FindAccountResponse>
+	</soapenv:Body>
+</soapenv:Envelope>

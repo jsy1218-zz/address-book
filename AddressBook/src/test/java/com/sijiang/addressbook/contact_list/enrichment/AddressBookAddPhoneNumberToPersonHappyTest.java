@@ -46,7 +46,8 @@ public class AddressBookAddPhoneNumberToPersonHappyTest {
 			AddressBookRepository addressBookRepo = (AddressBookRepositoryImpl) context
 					.getBean("com.sijiang.addressbook.repo.impl.AddressBookRepositoryImpl");
 						
-			addressBookRepo.addPhoneNumberToPerson(DEFAULT_PHONE_NUMBER, 1);
+			addressBookRepo.addPhoneNumberToPerson(DEFAULT_PHONE_NUMBER, DefaultAddressBookParams.DEFAULT_FIRST_NAME,
+					DefaultAddressBookParams.DEFAULT_LAST_NAME);
 			
 		} finally {
 			((AnnotationConfigApplicationContext) context).close();

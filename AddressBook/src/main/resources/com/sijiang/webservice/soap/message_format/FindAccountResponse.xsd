@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://addressbook.com/find_account">
+
+	<xs:element name="FindAccountResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="findAccountStatus" type="xs:string" />
+				<xs:element name="username" type="xs:string" />
+				<xs:element name="createdate" type="xs:dateTime" />
+				<xs:element name="lastlogindate" type="xs:dateTime" />
+				<xs:element name="accountstatus" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

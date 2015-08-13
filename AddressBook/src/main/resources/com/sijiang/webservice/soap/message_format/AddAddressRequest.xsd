@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://addressbook.com/add_address">
+
+	<xs:element name="AddAddressRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="firstname" type="xs:string" />
+				<xs:element name="lastname" type="xs:string" />
+				<xs:element name="streetname" type="xs:string" />
+				<xs:element name="city" type="xs:string" />
+				<xs:element name="country" type="xs:string" />
+				<xs:element name="postalcode" type="xs:int" />
+				<xs:element name="addresstype" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

@@ -42,7 +42,7 @@ public class AddressBookAddEmailToPersonHappyTest {
 			AddressBookRepository addressBookRepo = (AddressBookRepositoryImpl) context
 					.getBean("com.sijiang.addressbook.repo.impl.AddressBookRepositoryImpl");
 						
-			addressBookRepo.addEmailToPerson(DEFAULT_EMAIL, 1);
+			addressBookRepo.addEmailToPerson(DEFAULT_EMAIL, DefaultAddressBookParams.DEFAULT_FIRST_NAME, DefaultAddressBookParams.DEFAULT_LAST_NAME);
 			
 		} finally {
 			((AnnotationConfigApplicationContext) context).close();

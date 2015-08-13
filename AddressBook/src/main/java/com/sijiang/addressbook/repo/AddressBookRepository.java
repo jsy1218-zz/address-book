@@ -13,11 +13,14 @@ public interface AddressBookRepository {
 
 	void closeAccount(Account closingAccount);
 
-	void addAddressToPerson(Address defaultAddress, int personId);
+	void addAddressToPerson(Address defaultAddress, String firstName,
+			String lastName);
 
-	void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, int personId);
+	void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, String firstName,
+			String lastName);
 
-	void addEmailToPerson(Email defaultEmail, int personId);
+	void addEmailToPerson(Email defaultEmail, String firstName,
+			String lastName);
 
 	void addPersonIntoExistingAccount(Person defaultPerson, String username);
 

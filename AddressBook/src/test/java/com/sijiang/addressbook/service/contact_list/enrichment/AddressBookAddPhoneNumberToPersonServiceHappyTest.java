@@ -37,7 +37,9 @@ public class AddressBookAddPhoneNumberToPersonServiceHappyTest {
 			AddressBookManager addressBookManager = context
 					.getBean("com.sijiang.addressbook.service.impl.AddressBookManagerImpl", AddressBookManagerImpl.class);
 						
-			addressBookManager.addPhoneNumberToPerson(DefaultAddressBookParams.DEFAULT_PERSON_ID, DefaultAddressBookParams.DEFAULT_AREA_CODE,
+			addressBookManager.addPhoneNumberToPerson(DefaultAddressBookParams.DEFAULT_FIRST_NAME, 
+					DefaultAddressBookParams.DEFAULT_LAST_NAME,
+					DefaultAddressBookParams.DEFAULT_AREA_CODE,
 					DefaultAddressBookParams.DEFAULT_PREFIX, DefaultAddressBookParams.DEFAULT_LINE_NUMBER);
 		
 		} finally {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<soapenv:Header />
+	<soapenv:Body>
+		<add:AddAddressRequest xmlns:add="http://addressbook.com/add_address">
+			<firstname>adadsds</firstname>
+			<lastname>csdvsdfv</lastname>
+			<city>csdvsdfv</city>
+			<country>asd</country>
+			<postalcode>123456</postalcode>
+			<addresstype>red</addresstype>
+		</add:AddAddressRequest>
+	</soapenv:Body>
+</soapenv:Envelope>

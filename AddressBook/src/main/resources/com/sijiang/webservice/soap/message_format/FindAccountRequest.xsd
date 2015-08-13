@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://addressbook.com/find_account"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="FindAccountRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:string" name="username" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

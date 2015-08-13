@@ -15,7 +15,7 @@ public final class Address {
 	@NotEmpty(message = "You must provide a country.")
 	private final String country;
 	@NotEmpty(message = "You must provide a postal code.")
-	private final String postalCode;
+	private final int postalCode;
 	@NotNull(message = "You must provide an address type.")
 	private final AddressType addressType;
 
@@ -29,11 +29,11 @@ public final class Address {
 	}
 
 	public Address(String streetName, String city, String country,
-			String postalCode, AddressType addressType) {
+			int validPostalCode, AddressType addressType) {
 		this.streetName = streetName;
 		this.city = city;
 		this.country = country;
-		this.postalCode = postalCode;
+		this.postalCode = validPostalCode;
 		this.addressType = addressType;
 	}
 
@@ -57,7 +57,7 @@ public final class Address {
 		return country;
 	}
 
-	public String getPostalCode() {
+	public int getPostalCode() {
 		return postalCode;
 	}
 

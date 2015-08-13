@@ -33,15 +33,20 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 			+ " account where username = ? ";
 
 	private static final String ADD_EMAIL = "insert into email "
-			+ " (person_id, email) " + " values (?, ?) ";
+			+ " (person_id, email) "
+			+ " select person_id, ? from person "
+			+ " where person.first_name = ? and person.last_name = ? limit 1 ";
 
 	private static final String ADD_PHONE_NUMBER = "insert into phone_number "
 			+ " (person_id, country_code, area_code, prefix, line_number) "
-			+ " values (?, ?, ?, ?, ?) ";
+			+ " select person_id, ?, ?, ?, ? "
+			+ " from person "
+			+ " where person.first_name = ? and person.last_name = ? limit 1 ";
 	
 	private static final String ADD_ADDRESS = "insert into address "
 			+ " (street_name, city, country, postal_code, address_type, person_id) "
-			+ " values (?, ?, ?, ?, ?, ?) ";
+			+ " select ?, ?, ?, ?, ?, person_id from person "
+			+ " where person.first_name = ? and person.last_name = ? limit 1 ";
 	
 	private static final String FIND_PERSONS_BY_LASTNAME_And_FIRSTNAME = " select "
 			+ " per.person_id, per.age, per.first_name, per.last_name, "
@@ -167,19 +172,19 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public void addEmailToPerson(Email defaultEmail, int personId) {
+	public void addEmailToPerson(Email defaultEmail, String firstName, String lastName) {
 
 		this.JDBCTemplate.update(ADD_EMAIL,
-				new AddEmailPreparedStatementSetter(defaultEmail, personId));
+				new AddEmailPreparedStatementSetter(defaultEmail, firstName, lastName));
 	}
 
 	@Override
 	public void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber,
-			int personId) {
+			String firstName, String lastName) {
 
 		this.JDBCTemplate.update(ADD_PHONE_NUMBER,
 				new AddPhoneNumberPreparedStatementSetter(defaultPhoneNumber,
-						personId));
+						firstName, lastName));
 	}
 
 	// TODO: make a factory for the PreparedStatementSetter
@@ -214,11 +219,13 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 
 	private static class AddEmailPreparedStatementSetter implements
 			PreparedStatementSetter {
-		private final int personId;
+		private final String firstName;
+		private final String lastName;
 		private final String defaultEmail;
 
-		public AddEmailPreparedStatementSetter(Email defaultEmail, int personId) {
-			this.personId = personId;
+		public AddEmailPreparedStatementSetter(Email defaultEmail, String firstName, String lastName) {
+			this.firstName = firstName;
+			this.lastName = lastName;
 			this.defaultEmail = defaultEmail.toString();
 		}
 
@@ -229,14 +236,16 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 
 		@Override
 		public void setValues(PreparedStatement ps) throws SQLException {
-			ps.setInt(1, this.personId);
-			ps.setString(2, this.defaultEmail);
+			ps.setString(1, this.defaultEmail);
+			ps.setString(2, this.firstName);
+			ps.setString(3, this.lastName);
 		}
 	}
 
 	private static class AddPhoneNumberPreparedStatementSetter implements
 			PreparedStatementSetter {
-		private final int personId;
+		private final String firstName;
+		private final String lastName;
 		private final int countryCode;
 		private final int areaCode;
 		private final int prefix;
@@ -248,8 +257,9 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 		}
 
 		public AddPhoneNumberPreparedStatementSetter(
-				PhoneNumber defaultPhoneNumber, int personId) {
-			this.personId = personId;
+				PhoneNumber defaultPhoneNumber, String firstName, String lastName) {
+			this.firstName = firstName;
+			this.lastName = lastName;
 			this.countryCode = defaultPhoneNumber.getCountryCode();
 			this.areaCode = defaultPhoneNumber.getAreaCode();
 			this.prefix = defaultPhoneNumber.getPreFix();
@@ -258,19 +268,20 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 
 		@Override
 		public void setValues(PreparedStatement ps) throws SQLException {
-			ps.setInt(1, this.personId);
-			ps.setInt(2, this.countryCode);
-			ps.setInt(3, this.areaCode);
-			ps.setInt(4, this.prefix);
-			ps.setInt(5, this.lineNumber);
+			ps.setInt(1, this.countryCode);
+			ps.setInt(2, this.areaCode);
+			ps.setInt(3, this.prefix);
+			ps.setInt(4, this.lineNumber);
+			ps.setString(5, this.firstName);
+			ps.setString(6, this.lastName);
 		}
 	}
 	
 	@Override
-	public void addAddressToPerson(Address defaultAddress, int personId) {
+	public void addAddressToPerson(Address defaultAddress, String firstName, String lastName) {
 		this.JDBCTemplate
 				.update(ADD_ADDRESS, new AddAddressPreparedStatementSetter(
-						defaultAddress, personId));
+						defaultAddress, firstName, lastName));
 	}
 
 	private static class AddAddressPreparedStatementSetter implements
@@ -278,22 +289,24 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 		private final String streetName;
 		private final String city;
 		private final String country;
-		private final String postalCode;
+		private final int postalCode;
 		private final String addressType;
-		private final int personId;
+		private final String firstName;
+		private final String lastName;
 
 		@SuppressWarnings("unused")
 		private AddAddressPreparedStatementSetter() {
 			throw new UnsupportedOperationException();
 		}
 
-		public AddAddressPreparedStatementSetter(Address defaultAddress, int personId) {
+		public AddAddressPreparedStatementSetter(Address defaultAddress, String firstName, String lastName) {
 			this.streetName = defaultAddress.getStreetName();
 			this.city = defaultAddress.getCity();
 			this.country = defaultAddress.getCountry();
 			this.postalCode = defaultAddress.getPostalCode();
 			this.addressType = defaultAddress.getAddressType().toString();
-			this.personId = personId;
+			this.firstName = firstName;
+			this.lastName = lastName;
 		}
 
 		@Override
@@ -301,9 +314,10 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 			ps.setString(1, this.streetName);
 			ps.setString(2, this.city);
 			ps.setString(3, this.country);
-			ps.setString(4, this.postalCode);
+			ps.setInt(4, this.postalCode);
 			ps.setString(5, this.addressType);
-			ps.setInt(6, this.personId);
+			ps.setString(6, this.firstName);
+			ps.setString(7, this.lastName);
 		}
 	}
 
@@ -324,7 +338,7 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 			String streetName = rs.getString("street_name");
 			String city = rs.getString("city");
 			String country = rs.getString("country");
-			String postalCode = rs.getString("postal_code");
+			int postalCode = rs.getInt("postal_code");
 			AddressType addressType = AddressType.valueOf(rs.getString("address_type")); 
 
 			int phoneNumberId = rs.getInt("phone_number_id");
@@ -402,7 +416,7 @@ public class JDBCpersonDAOImpl implements PersonDAO {
 			String streetName = rs.getString("street_name");
 			String city = rs.getString("city");
 			String country = rs.getString("country");
-			String postalCode = rs.getString("postal_code");
+			int postalCode = rs.getInt("postal_code");
 			String addressType = rs.getString("address_type");
 			
 			return new Address(streetName, city, country, postalCode, 

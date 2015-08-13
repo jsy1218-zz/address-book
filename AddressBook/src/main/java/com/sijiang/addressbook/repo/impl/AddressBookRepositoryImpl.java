@@ -86,17 +86,20 @@ public class AddressBookRepositoryImpl implements AddressBookRepository {
 	}
 
 	@Override
-	public void addEmailToPerson(Email defaultEmail, int personId) {
-		this.personDAO.addEmailToPerson(defaultEmail, personId);
+	public void addEmailToPerson(Email defaultEmail, String firstName,
+			String lastName) {
+		this.personDAO.addEmailToPerson(defaultEmail, firstName, lastName);
 	}
 
 	@Override
-	public void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, int personId) {
-		this.personDAO.addPhoneNumberToPerson(defaultPhoneNumber, personId);
+	public void addPhoneNumberToPerson(PhoneNumber defaultPhoneNumber, String firstName,
+			String lastName) {
+		this.personDAO.addPhoneNumberToPerson(defaultPhoneNumber, firstName, lastName);
 	}
 	
 	@Override
-	public void addAddressToPerson(Address defaultAddress, int personId) {
-		this.personDAO.addAddressToPerson(defaultAddress, personId);
+	public void addAddressToPerson(Address defaultAddress, String firstName,
+			String lastName) {
+		this.personDAO.addAddressToPerson(defaultAddress, firstName, lastName);
 	}
 }

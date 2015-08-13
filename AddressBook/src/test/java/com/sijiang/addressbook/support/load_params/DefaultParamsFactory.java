@@ -36,7 +36,7 @@ public final class DefaultParamsFactory {
 	@Value("${address.country}")
 	public String DEFAULT_COUNTRY;
 	@Value("${address.postal_code}")
-	public String DEFAULT_POSTAL_CODE;
+	public int DEFAULT_POSTAL_CODE;
 	@Value("${address.address_type}")
 	public AddressType DEFAULT_ADDRESS_TYPE;
 	@Value("${person.email}")

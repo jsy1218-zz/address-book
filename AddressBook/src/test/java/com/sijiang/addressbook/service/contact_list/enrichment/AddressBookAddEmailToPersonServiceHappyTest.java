@@ -30,7 +30,8 @@ public class AddressBookAddEmailToPersonServiceHappyTest {
 			AddressBookManager addressBookManager = context
 					.getBean("com.sijiang.addressbook.service.impl.AddressBookManagerImpl", AddressBookManagerImpl.class);
 			
-			addressBookManager.addEmailToPerson(DefaultAddressBookParams.DEFAULT_PERSON_ID, 
+			addressBookManager.addEmailToPerson(DefaultAddressBookParams.DEFAULT_FIRST_NAME, 
+					DefaultAddressBookParams.DEFAULT_LAST_NAME,
 					DefaultAddressBookParams.DEFAULT_EMAIL_AS_STRING);
 			
 		} finally {

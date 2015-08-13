@@ -19,6 +19,7 @@ import com.sijiang.addressbook.model.PhoneNumber;
 import com.sijiang.addressbook.model.PhoneNumber.PhoneNumberBuilder;
 import com.sijiang.addressbook.repo.AddressBookRepository;
 import com.sijiang.addressbook.service.AddressBookManager;
+import com.sijiang.addressbook.util.DefaultAddressBookParams;
 
 @Service("com.sijiang.addressbook.service.impl.AddressBookManagerImpl")
 public class AddressBookManagerImpl implements AddressBookManager {
@@ -84,17 +85,19 @@ public class AddressBookManagerImpl implements AddressBookManager {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addEmailToPerson(int personId, String email) {
+	public void addEmailToPerson(String firstName,
+			String lastName, String email) {
 		Email defaultEmail = new Email(email);
 		
-		this.addressBookRepo.addEmailToPerson(defaultEmail, personId);
+		this.addressBookRepo.addEmailToPerson(defaultEmail, firstName, lastName);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addPhoneNumberToPerson(int personId, int areaCode, int prefix,
+	public void addPhoneNumberToPerson(String firstName,
+			String lastName, int areaCode, int prefix,
 			int lineNumber, int... countryCode) {
 		PhoneNumberBuilder defaultPhoneNumberBuilder = new PhoneNumber.PhoneNumberBuilder(
 				areaCode, prefix, lineNumber);
@@ -105,19 +108,20 @@ public class AddressBookManagerImpl implements AddressBookManager {
 		
 		PhoneNumber defaultPhoneNumber = defaultPhoneNumberBuilder.buildPhoneNumber();
 		
-		this.addressBookRepo.addPhoneNumberToPerson(defaultPhoneNumber, personId);
+		this.addressBookRepo.addPhoneNumberToPerson(defaultPhoneNumber, firstName, lastName);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addAddressToPerson(int personId, String streetName,
-			String city, String country, String postalCode, String addressType) {
+	public void addAddressToPerson(String firstName,
+			String lastName, String streetName,
+			String city, String country, int postalCode, String addressType) {
 		Address defaultAddress = new Address(streetName,
 				 city,  country,  postalCode, AddressType.valueOf(addressType));
 		
-		this.addressBookRepo.addAddressToPerson(defaultAddress, personId);
+		addressBookRepo.addAddressToPerson(defaultAddress, DefaultAddressBookParams.DEFAULT_FIRST_NAME, DefaultAddressBookParams.DEFAULT_LAST_NAME);
 	}
 	
 	public AddressBookRepository getAddressBookRepo() {

@@ -14,7 +14,7 @@ public interface DefaultAddressBookParams {
 	public static final String DEFAULT_STREET_NAME = "10th St";
 	public static final String DEFAULT_CITY = "Seattle";
 	public static final String DEFAULT_COUNTRY = "USA";
-	public static final String DEFAULT_POSTAL_CODE = "98000";
+	public static final int DEFAULT_POSTAL_CODE = 98000;
 	public static final AddressType DEFAULT_ADDRESS_TYPE = AddressType.RESIDENTIAL;
 	
 	public static final String DEFAULT_EMAIL_AS_STRING = "123@email.com";

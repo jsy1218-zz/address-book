@@ -37,7 +37,8 @@ public class AddressBookAddAddressToPersonServiceHappyTest {
 			AddressBookManager addressBookManager = context
 					.getBean("com.sijiang.addressbook.service.impl.AddressBookManagerImpl", AddressBookManagerImpl.class);
 						
-			addressBookManager.addAddressToPerson(DefaultAddressBookParams.DEFAULT_PERSON_ID, DefaultAddressBookParams.DEFAULT_STREET_NAME,
+			addressBookManager.addAddressToPerson(DefaultAddressBookParams.DEFAULT_FIRST_NAME, 
+					DefaultAddressBookParams.DEFAULT_LAST_NAME, DefaultAddressBookParams.DEFAULT_STREET_NAME,
 					DefaultAddressBookParams.DEFAULT_CITY, DefaultAddressBookParams.DEFAULT_COUNTRY, 
 					DefaultAddressBookParams.DEFAULT_POSTAL_CODE, DefaultAddressBookParams.DEFAULT_ADDRESS_TYPE.toString());
 
