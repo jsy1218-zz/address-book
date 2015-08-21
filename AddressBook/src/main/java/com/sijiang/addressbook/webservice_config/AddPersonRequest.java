@@ -48,13 +48,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "AddPersonRequest", namespace = "http://addressbook.com/add_person")
 public class AddPersonRequest {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "http://addressbook.com/add_person")
     protected int age;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "http://addressbook.com/add_person")
     protected String firstname;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "http://addressbook.com/add_person")
     protected String lastname;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "http://addressbook.com/add_person")
     protected String username;
 
     /**
