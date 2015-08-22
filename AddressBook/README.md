@@ -1,54 +1,40 @@
 Spring Integration - War Template
 =================================
 
-# Introduction
+## Introduction
 
-This template is meant for running [Spring Integration][] inside Servlet Containers such as [Apache Tomcat][] or [Jetty][]. This template by default uses the Spring Integration [Twitter Adapters][] to show some basic functionality.
+This sample project demoes how to run the Spring SOAP web service on the local instance. 
 
-Please keep in mind, that the provided Web UI is not necessary just to run *Spring Integration* applications. You can in fact run *Spring Integration* processes without any MVC integration. Thus, you can run your *Spring Integration* components and flows as mere backend processes within Servlet Containers.
+## Environment Specification
 
-# Running the Template
+This project is compiled with and run with java JDK and JRE 1.7.0_67.
 
-*Twitter Search* requires authentication. Therefore, you must update the following properties in **oauth.properties** located at  `src/main/resources`:
+Maven is used for the dependency management and class path generation. This project was imported to Spring STS 3.6.0.RELEASE after it generates the eclipse classpath. 
 
-* twitter.oauth.consumerKey
-* twitter.oauth.consumerSecret
-* twitter.oauth.accessToken
-* twitter.oauth.accessTokenSecret
 
-Alternatively, you can also pass in those properties using system properties via the command-line, e.g.:
+## Command Line using maven
 
-	mvn jetty:run -Dtwitter.oauth.consumerKey=12345 \
-	-Dtwitter.oauth.consumerSecret=12345 \
-	-Dtwitter.oauth.accessToken=12345 \
-	-Dtwitter.oauth.accessTokenSecret=12345 \
+	mvn clean
 
-The keys can be setup at [http://dev.twitter.com/](http://dev.twitter.com/).
+    mvn eclipse::eclipse
+    
+You should be able to import the project without any build path error after issuing the above two command lines.
+    
 
-## Command Line using Tomcat 7
+## Third party library version
 
-	mvn tomcat7:run
+third party library version is specified in the pom.xml file. 
 
-## Command Line using Jetty
+## MySQL setup 
 
-	mvn jetty:run
+Follow the MySQL setup at: https://dev.mysql.com/usingmysql/get_started.html
 
-## Eclipse
+Make sure your MySQL connection url and credential is updated in the jdbc.properties file.
 
-If you are using [Spring Tool Suite][] (STS) and the project is imported as Eclipse project into your workspace, you can just execute 'Run on Server'.
+This demo project connects to MySQL version 5.6.22.
 
-## Limitations
+## Bootstrap Start the Application
 
-Due to [an issue](https://issuetracker.springsource.com/browse/STS-3301) in the STS template mechanism, all referenced *PNG* files are hosted, externally.
+If imported into the Spring STS, you should be able to run with "Spring Boot App" option.
 
---------------------------------------------------------------------------------
-
-For help please take a look at the [Spring Integration documentation][]. The Template projects are hosted at: https://github.com/SpringSource/spring-integration-templates
-
-[Apache Tomcat]: http://tomcat.apache.org/
-[Jetty]: http://www.eclipse.org/jetty/
-[Spring Tool Suite]: http://www.springsource.org/sts
-[Spring Integration]: http://www.springintegration.org/
-[Spring Integration documentation]: http://static.springsource.org/spring-integration/reference/html/
-[Twitter Adapters]: http://static.springsource.org/spring-integration/reference/html/twitter.html
-
+If you have any question, feel free to email blackjackjiang@gmail.com
